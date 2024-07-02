@@ -5,11 +5,8 @@ import (
 	"github.com/mrifkiw/belajar_gin/model"
 )
 
-func init() {
-	initializer.ConnectToDB()
-	initializer.LoadEnvVariables()
-}
-
 func main() {
+	initializer.LoadEnvVariables()
+	initializer.ConnectToDB()
 	initializer.DB.AutoMigrate(&model.Todo{})
 }

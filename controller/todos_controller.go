@@ -25,7 +25,9 @@ func GetTodos(c *gin.Context) {
 	var todos []model.Todo
 
 	initializer.DB.Find(&todos)
-	c.JSON(200, todos)
+	c.JSON(200, gin.H{
+		"data": &todos,
+	})
 }
 func GetTodoWithID(c *gin.Context) {
 	var todo model.Todo
@@ -35,7 +37,10 @@ func GetTodoWithID(c *gin.Context) {
 	result := initializer.DB.First(&todo, todoId)
 
 	if result.Error != nil {
-		c.JSON(404, gin.H{"error": "Todo not found"})
+		c.JSON(404, gin.H{
+			"error":      "Todo not found",
+			"stackTrace": result.Error,
+		})
 		return
 	}
 
