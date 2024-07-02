@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/mrifkiw/belajar_gin/controller"
 	"github.com/mrifkiw/belajar_gin/initializer"
@@ -20,6 +22,6 @@ func main() {
 	router.PUT("/todos/:id", controller.UpdateTodoWithID)
 	router.DELETE("/todos/:id", controller.DeleteTodoWithID)
 
-	router.Run(":8000")
+	router.Run(os.Getenv("PORT"))
 
 }
